@@ -4,9 +4,15 @@
     <meta charset="utf-8" />
     <title>Redirecting...</title>
     <script type="text/javascript">
-      sessionStorage.redirect = location.href;
+      // Store the path that was attempted
+      var path = window.location.pathname + window.location.search + window.location.hash;
+      
+      // Only redirect if this is actually a 404 (not just the root)
+      if (path !== '/' && path !== '') {
+        sessionStorage.redirect = path;
+        window.location.href = '/';
+      }
     </script>
-    <meta http-equiv="refresh" content="0;url=/">
   </head>
   <body></body>
 </html>
